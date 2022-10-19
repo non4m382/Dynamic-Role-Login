@@ -1,5 +1,6 @@
 package com.example.dynamicrole2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,11 +23,14 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private ERole eRole;
+    private ERole name;
 
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<User> users = new HashSet<>();
 
+
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<Action> actions = new HashSet<>();
 }
